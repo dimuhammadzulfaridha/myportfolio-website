@@ -14,6 +14,31 @@ const app = express();
 const PORT = 3000;
 const JWT_SECRET = 'super_secret_key_123'; // In production, use environment variables
 
+// Local CMS Exporter
+const exportDatabaseToJson = () => {
+  const getTableData = (table) => {
+    return new Promise((resolve, reject) => {
+      db.all(`SELECT * FROM ${table} ORDER BY createdAt DESC`, [], (err, rows) => {
+        if (err) reject(err);
+        else resolve(rows);
+      });
+    });
+  };
+
+  Promise.all([
+    getTableData('projects'),
+    getTableData('experiences'),
+    getTableData('certifications')
+  ]).then(([projects, experiences, certifications]) => {
+    const data = { projects, experiences, certifications };
+    const outputPath = path.join(__dirname, '../public/data.json');
+    fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
+    console.log('Successfully exported database to public/data.json');
+  }).catch(err => {
+    console.error('Failed to export database:', err);
+  });
+};
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -96,6 +121,7 @@ const createCrudRoutes = (tableName) => {
 
     db.run(sql, values, function (err) {
       if (err) return res.status(500).send({ message: err.message });
+      exportDatabaseToJson();
       res.status(200).send({ id: this.lastID, ...req.body, createdAt: values[values.length - 1] });
     });
   });
@@ -112,6 +138,7 @@ const createCrudRoutes = (tableName) => {
     const sql = `UPDATE ${tableName} SET ${setString} WHERE id = ?`;
     db.run(sql, values, function (err) {
       if (err) return res.status(500).send({ message: err.message });
+      exportDatabaseToJson();
       res.status(200).send({ message: 'Updated successfully', id });
     });
   });
@@ -120,6 +147,7 @@ const createCrudRoutes = (tableName) => {
   app.delete(`/api/${tableName}/:id`, verifyToken, (req, res) => {
     db.run(`DELETE FROM ${tableName} WHERE id = ?`, [req.params.id], function (err) {
       if (err) return res.status(500).send({ message: err.message });
+      exportDatabaseToJson();
       res.status(200).send({ message: 'Deleted successfully' });
     });
   });
@@ -136,6 +164,7 @@ app.post('/api/upload', verifyToken, upload.single('image'), (req, res) => {
   res.status(200).send({ imageUrl: req.file.path });
 });
 
+exportDatabaseToJson();
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
