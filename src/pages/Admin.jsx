@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignOut, Plus, PencilSimple, Trash, Image as ImageIcon, X, UploadSimple, Check } from '@phosphor-icons/react';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:3000';
+
 function Admin() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('experiences');
@@ -37,7 +39,7 @@ function Admin() {
         return;
       }
       try {
-        const res = await fetch('http://127.0.0.1:3000/api/auth/verify', {
+        const res = await fetch(`${BACKEND_URL}/api/auth/verify`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!res.ok) throw new Error('Invalid token');
@@ -53,7 +55,7 @@ function Admin() {
 
   const fetchData = async (tab) => {
     try {
-      const res = await fetch(`http://127.0.0.1:3000/api/${tab}`);
+      const res = await fetch(`${BACKEND_URL}/api/${tab}`);
       const data = await res.json();
       setItems(data);
     } catch (error) {
@@ -96,7 +98,7 @@ function Admin() {
       if (selectedFile) {
         const fileData = new FormData();
         fileData.append('image', selectedFile);
-        const uploadRes = await fetch('http://127.0.0.1:3000/api/upload', {
+        const uploadRes = await fetch(`${BACKEND_URL}/api/upload`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` },
           body: fileData
@@ -119,7 +121,7 @@ function Admin() {
 
       if (formData.id) {
         // Update existing
-        await fetch(`http://127.0.0.1:3000/api/${activeTab}/${formData.id}`, {
+        await fetch(`${BACKEND_URL}/api/${activeTab}/${formData.id}`, {
           method: 'PUT',
           headers: { 
             'Content-Type': 'application/json',
@@ -129,7 +131,7 @@ function Admin() {
         });
       } else {
         // Add new
-        await fetch(`http://127.0.0.1:3000/api/${activeTab}`, {
+        await fetch(`${BACKEND_URL}/api/${activeTab}`, {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json',
@@ -159,7 +161,7 @@ function Admin() {
         setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
         try {
           const token = localStorage.getItem('token');
-          const res = await fetch(`http://127.0.0.1:3000/api/${activeTab}/${id}`, {
+          const res = await fetch(`${BACKEND_URL}/api/${activeTab}/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
           });

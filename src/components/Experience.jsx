@@ -21,12 +21,13 @@ const Experience = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/data.json');
-        if (!res.ok) throw new Error('Failed to fetch data');
-        const data = await res.json();
-        
-        const projData = data.projects || [];
-        const expData = data.experiences || [];
+        const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://127.0.0.1:3000';
+        const [projRes, expRes] = await Promise.all([
+          fetch(`${backendUrl}/api/projects`),
+          fetch(`${backendUrl}/api/experiences`)
+        ]);
+        const projData = await projRes.json();
+        const expData = await expRes.json();
         
         // Parse tags if needed
         const parsedProj = projData.map(p => ({
