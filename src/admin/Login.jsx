@@ -49,7 +49,7 @@ function Login() {
       {/* Back Button */}
       <button 
         onClick={() => navigate('/')}
-        className="absolute top-8 left-8 flex items-center gap-2 text-white/40 hover:text-white transition-colors group z-20"
+        className="absolute top-6 left-6 md:top-8 md:left-8 flex items-center gap-2 text-white/40 hover:text-white transition-colors group z-20"
       >
         <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
           <ArrowLeft weight="bold" />
@@ -63,7 +63,7 @@ function Login() {
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
         className="w-full max-w-md relative z-10"
       >
-        <div className="bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-3xl p-10 shadow-2xl">
+        <div className="bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-10 shadow-2xl">
           <div className="text-center mb-10">
             <h1 className="text-3xl font-bold tracking-tight mb-3">Admin Portal</h1>
             <p className="text-white/40 font-light">Silakan masuk untuk mengelola portofolio</p>

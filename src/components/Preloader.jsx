@@ -53,7 +53,7 @@ const Preloader = ({ onComplete }) => {
             {/* Gambar GIF Kucing dari folder public */}
             {/* mix-blend-screen menghilangkan background hitam. Jika background GIF-nya putih, ganti dengan mix-blend-multiply */}
             <img 
-              src="/loadingcat.gif" 
+              src="/images/loadingcat.gif" 
               alt="Walking Cat" 
               className="w-56 h-56 md:w-72 md:h-72 object-contain object-bottom mix-blend-screen scale-[1.2]"
             />

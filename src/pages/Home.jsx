@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import About from '../components/About';
-import Experience from '../components/Experience';
-import Certifications from '../components/Certifications';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
+import Hero from '../sections/Hero';
+import About from '../sections/About';
+import Experience from '../sections/Experience';
+import Certifications from '../sections/Certifications';
+import Contact from '../sections/Contact';
+import Footer from '../sections/Footer';
 
 function Home() {
   useEffect(() => {

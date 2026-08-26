@@ -35,7 +35,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="pt-8 pb-12 md:pb-16 px-4 md:px-12 max-w-7xl mx-auto relative z-10">
+    <section id="contact" className="pt-8 pb-6 md:pb-16 px-4 md:px-12 max-w-7xl mx-auto relative z-10">
       
       {/* Centered Heading and Subtitle */}
       <motion.div 

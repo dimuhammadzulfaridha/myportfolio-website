@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Home from './pages/Home';
-import Login from './pages/Login';
+import Login from './admin/Login';
 import Admin from './admin/Admin';
 import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';

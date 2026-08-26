@@ -7,11 +7,11 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center px-4 md:px-12 lg:px-24 pt-24 pb-4">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center px-4 md:px-12 lg:px-24 pt-24 pb-28 md:pb-4">
 
       <motion.div
         style={{ opacity }}
-        className="relative z-10 max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
+        className="relative z-10 max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 lg:gap-8 items-center"
       >
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left order-2 lg:order-1 lg:col-span-7">
           <motion.h1
@@ -40,7 +40,7 @@ const Hero = () => {
             transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.5 }}
             className="flex flex-wrap justify-center lg:justify-start items-center gap-4"
           >
-            <a href="/CV a.n Di Muhammad Zulfa Ridha.pdf" download="CV_Di_Muhammad_Zulfa_Ridha.pdf" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center gap-4 rounded-full bg-white/5 border border-white/10 hover:border-white/20 text-white/90 hover:text-white px-8 py-4 font-medium text-sm transition-all duration-300 backdrop-blur-md hover:bg-white/10 active:scale-[0.98]">
+            <a href="/cv.pdf" download="CV_Di_Muhammad_Zulfa_Ridha.pdf" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center gap-4 rounded-full bg-white/5 border border-white/10 hover:border-white/20 text-white/90 hover:text-white px-8 py-4 font-medium text-sm transition-all duration-300 backdrop-blur-md hover:bg-white/10 active:scale-[0.98]">
               <span>Download CV</span>
               {/* Button-in-Button */}
               <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-white/20 group-hover:-translate-y-[2px] group-hover:scale-105 text-white/80 group-hover:text-white">
@@ -63,7 +63,7 @@ const Hero = () => {
         </div>
 
         {/* Photo Container */}
-        <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end w-full lg:col-span-5 mb-8 lg:mb-0">
+        <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end w-full lg:col-span-5">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
