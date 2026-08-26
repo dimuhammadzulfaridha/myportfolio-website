@@ -167,7 +167,7 @@ const Navbar = () => {
                   <a 
                     href={`#${link.id}`}
                     onClick={(e) => scrollToSection(e, link.id)}
-                    className={`text-5xl md:text-7xl font-light tracking-tighter transition-colors duration-500 ${
+                    className={`text-4xl md:text-7xl font-light tracking-tighter transition-colors duration-500 ${
                       activeSection === link.id
                         ? 'text-white font-medium'
                         : 'text-white/60 hover:text-white'

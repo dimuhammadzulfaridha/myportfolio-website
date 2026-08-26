@@ -35,7 +35,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="pt-8 pb-16 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+    <section id="contact" className="pt-8 pb-12 md:pb-16 px-4 md:px-12 max-w-7xl mx-auto relative z-10">
       
       {/* Centered Heading and Subtitle */}
       <motion.div 
@@ -54,7 +54,7 @@ const Contact = () => {
       </motion.div>
 
       {/* Two Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-16 items-start">
         
         {/* LEFT COLUMN: Information / Description */}
         <motion.div 

@@ -48,7 +48,7 @@ const Certifications = () => {
   }, [selectedCert]);
 
   return (
-    <section id="certifications" className={`pt-8 pb-4 px-6 md:px-12 max-w-7xl mx-auto relative ${selectedCert ? 'z-[60]' : 'z-10'}`}>
+    <section id="certifications" className={`pt-8 pb-4 px-4 md:px-12 max-w-7xl mx-auto relative ${selectedCert ? 'z-[60]' : 'z-10'}`}>
       
       {/* Header */}
       <motion.div 
@@ -56,7 +56,7 @@ const Certifications = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-        className="flex flex-col items-center text-center mb-10"
+        className="flex flex-col items-center text-center mb-6 md:mb-10"
       >
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white">
           My Certifications

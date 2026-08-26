@@ -1,16 +1,28 @@
-# React + Vite
+# Di Muhammad Zulfa Ridha - Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A sleek, modern, and highly responsive personal portfolio website built to showcase my projects, experiences, certifications, and skills. Designed with a focus on smooth animations, dynamic layouts, and optimal performance across all devices.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Dynamic Hero Section**: Interactive entrance animations with a customized preloader.
+- **Responsive Design**: Mobile-first approach guaranteeing a flawless experience on smartphones, tablets, and desktops.
+- **Smooth Animations**: Integrated with Framer Motion for elegant scroll reveals, hover effects, and page transitions.
+- **GitHub Integration**: Real-time GitHub contributions graph.
+- **Admin Dashboard**: Full CRUD (Create, Read, Update, Delete) capability for managing Experiences, Projects, and Certifications directly from a secure admin panel.
 
-## React Compiler
+## 🛠️ Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React.js, Vite, Tailwind CSS, Framer Motion
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Mongoose)
+- **Icons & UI**: Phosphor Icons, React GitHub Calendar
+- **Deployment**: Vercel
 
-## Expanding the Oxlint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+To run this project locally:
+
+1. Clone the repository
+2. Install frontend dependencies: `npm install`
+3. Run the frontend development server: `npm run dev`
+4. Navigate to the `backend` folder, install dependencies, and run: `npm start`

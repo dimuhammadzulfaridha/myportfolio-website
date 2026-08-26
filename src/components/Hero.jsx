@@ -7,7 +7,7 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-24 pb-4">
+    <section className="relative min-h-[100dvh] flex flex-col justify-center px-4 md:px-12 lg:px-24 pt-24 pb-4">
 
       <motion.div
         style={{ opacity }}
@@ -18,7 +18,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.32, 0.72, 0, 1], delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter leading-none mb-6"
+            className="text-[2rem] leading-[1.1] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter mb-6"
           >
             DI MUHAMMAD <br />
             <span className="text-white/40 italic font-light">ZULFA RIDHA</span>
@@ -68,7 +68,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
-            className="w-64 h-64 md:w-80 md:h-80 lg:w-full lg:aspect-[4/5] outer-shell lg:rounded-[3rem] overflow-hidden group shadow-2xl"
+            className="w-56 h-56 md:w-80 md:h-80 lg:w-full lg:aspect-[4/5] outer-shell lg:rounded-[3rem] overflow-hidden group shadow-2xl"
           >
             <div className="inner-core w-full h-full p-2 bg-white/5 lg:rounded-[calc(3rem-0.375rem)]">
               <div className="w-full h-full bg-white/10 rounded-[calc(2rem-0.75rem)] lg:rounded-[calc(3rem-0.75rem)] flex items-center justify-center">

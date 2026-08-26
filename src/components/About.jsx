@@ -47,7 +47,7 @@ const About = () => {
 
 
   return (
-    <section id="about" className="pt-8 pb-4 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+    <section id="about" className="pt-8 pb-4 px-4 md:px-12 max-w-7xl mx-auto relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* About Me Text (Left) */}
         <motion.div
@@ -197,15 +197,15 @@ const About = () => {
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
         className="mt-12 flex flex-col items-center"
       >
-        <div className="inline-block rounded-full px-3 py-1 mb-10 text-[10px] uppercase tracking-[0.2em] font-medium border border-white/10 bg-white/5 text-white/50">
+        <div className="inline-block rounded-full px-3 py-1 mb-6 md:mb-10 text-[10px] uppercase tracking-[0.2em] font-medium border border-white/10 bg-white/5 text-white/50">
           Tech Stack
         </div>
 
         {/* Marquee Container with Masking */}
-        <div className="relative h-[400px] w-full max-w-4xl mx-auto overflow-hidden mask-y flex justify-center gap-8 md:gap-16 px-4">
+        <div className="relative h-[400px] w-full max-w-4xl mx-auto overflow-hidden mask-y flex justify-center gap-4 md:gap-16 px-2 md:px-4">
 
           {/* Column 1: Languages (Scroll Up) */}
-          <div className="flex flex-col w-24 sm:w-32 animate-marquee-y h-max" style={{ animationDuration: `${languages.length * 3}s` }}>
+          <div className="flex flex-col w-20 sm:w-32 animate-marquee-y h-max" style={{ animationDuration: `${languages.length * 3}s` }}>
             {[...languages, ...languages].map((tech, idx) => (
               <div key={`lang-${idx}`} className="flex flex-col items-center justify-center p-4 bg-white/[0.02] border border-white/5 rounded-2xl shadow-glow hover:bg-white/10 transition-colors h-24 sm:h-32 group mb-6">
                 <img src={tech.customIcon || `https://cdn.simpleicons.org/${tech.slug}/white`} alt={tech.name} className="w-8 h-8 sm:w-12 sm:h-12 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
@@ -215,7 +215,7 @@ const About = () => {
           </div>
 
           {/* Column 2: Tools & Platforms (Scroll Down) */}
-          <div className="flex flex-col w-24 sm:w-32 animate-marquee-y-reverse h-max" style={{ animationDuration: `${tools.length * 3}s` }}>
+          <div className="flex flex-col w-20 sm:w-32 animate-marquee-y-reverse h-max" style={{ animationDuration: `${tools.length * 3}s` }}>
             {[...tools, ...tools].map((tech, idx) => (
               <div key={`tool-${idx}`} className="flex flex-col items-center justify-center p-4 bg-white/[0.02] border border-white/5 rounded-2xl shadow-glow hover:bg-white/10 transition-colors h-24 sm:h-32 group mb-6">
                 <img src={tech.customIcon || `https://cdn.simpleicons.org/${tech.slug}/white`} alt={tech.name} className="w-8 h-8 sm:w-12 sm:h-12 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
@@ -225,7 +225,7 @@ const About = () => {
           </div>
 
           {/* Column 3: AI & Productivity (Scroll Up) */}
-          <div className="flex flex-col w-24 sm:w-32 animate-marquee-y h-max" style={{ animationDuration: `${productivity.length * 3}s` }}>
+          <div className="flex flex-col w-20 sm:w-32 animate-marquee-y h-max" style={{ animationDuration: `${productivity.length * 3}s` }}>
             {[...productivity, ...productivity].map((tech, idx) => (
               <div key={`prod-${idx}`} className="flex flex-col items-center justify-center p-4 bg-white/[0.02] border border-white/5 rounded-2xl shadow-glow hover:bg-white/10 transition-colors h-24 sm:h-32 group mb-6">
                 <img src={tech.customIcon || `https://cdn.simpleicons.org/${tech.slug}/white`} alt={tech.name} className="w-8 h-8 sm:w-12 sm:h-12 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />

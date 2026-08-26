@@ -51,10 +51,10 @@ const Experience = () => {
   });
 
   return (
-    <section id="experience" className="pt-8 pb-4 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+    <section id="experience" className="pt-8 pb-4 px-4 md:px-12 max-w-7xl mx-auto relative z-10">
       
       {/* 2-Column Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 lg:gap-12">
         
         {/* Left Column: EXPERIENCE */}
         <div>
@@ -63,7 +63,7 @@ const Experience = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-            className="mb-12"
+            className="mb-6 md:mb-12"
           >
             <div className="inline-block rounded-full px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.2em] font-medium border border-white/10 bg-white/5 text-white/50">
               Experience
@@ -78,10 +78,10 @@ const Experience = () => {
 
           <div className="relative" ref={containerRef}>
             {/* The central vertical line (background) */}
-            <div className="absolute left-[27px] md:left-[96px] top-4 bottom-4 w-[2px] bg-white/5"></div>
+            <div className="absolute left-[23px] md:left-[96px] top-4 bottom-4 w-[2px] bg-white/5"></div>
             {/* The animated filled vertical line */}
             <motion.div 
-              className="absolute left-[27px] md:left-[96px] top-4 bottom-4 w-[2px] bg-white/40 origin-top"
+              className="absolute left-[23px] md:left-[96px] top-4 bottom-4 w-[2px] bg-white/40 origin-top"
               style={{ scaleY: scrollYProgress }}
             ></motion.div>
             
@@ -96,7 +96,7 @@ const Experience = () => {
                   className="relative flex flex-col md:flex-row md:items-center gap-4 md:gap-8"
                 >
                   {/* Node on the timeline */}
-                  <div className="absolute left-[24px] md:left-[93px] top-[30px] md:top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white/10 ring-4 ring-[#090f1d] outline outline-2 outline-white/20 shadow-[0_0_12px_rgba(255,255,255,0.1)] z-10"></div>
+                  <div className="absolute left-[20px] md:left-[93px] top-[30px] md:top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white/10 ring-4 ring-[#090f1d] outline outline-2 outline-white/20 shadow-[0_0_12px_rgba(255,255,255,0.1)] z-10"></div>
                   
                   {/* Date (Left Side on Desktop, hidden on mobile) */}
                   <div className="hidden md:block w-20 flex-shrink-0 text-right mt-1">
@@ -105,7 +105,7 @@ const Experience = () => {
                   </div>
 
                   {/* Content Box */}
-                  <div className="pl-16 md:pl-0 flex-grow flex items-start md:items-center gap-4 group">
+                  <div className="pl-12 md:pl-0 flex-grow flex items-start md:items-center gap-4 group">
                     <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1 md:mt-0 transition-transform duration-300 group-hover:scale-110">
                       {exp.image ? (
                         <img src={exp.image} alt={exp.title} className="w-full h-full object-cover rounded-full" />
@@ -135,7 +135,7 @@ const Experience = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-            className="mb-12"
+            className="mb-6 md:mb-12"
           >
             <div className="inline-block rounded-full px-3 py-1 mb-4 text-[10px] uppercase tracking-[0.2em] font-medium border border-white/10 bg-white/5 text-white/50">
               Projects
