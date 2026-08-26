@@ -1,0 +1,26 @@
+{
+  "name": "Di Muhammad Zulfa Ridha - Portfolio",
+  "short_name": "Zulfa Portfolio",
+  "description": "Computer Engineering Graduate from Syiah Kuala University specializing in Machine Learning, IoT, and Web Development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/myprofile.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/myprofile.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "development", "education"],
+  "lang": "id-ID"
+}

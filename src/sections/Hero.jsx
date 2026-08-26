@@ -18,9 +18,9 @@ const Hero = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.32, 0.72, 0, 1], delay: 0.1 }}
-            className="text-[2rem] leading-[1.1] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter mb-6"
+            className="text-[1.25rem] min-[375px]:text-[1.4rem] sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] font-bold tracking-tighter mb-6 whitespace-nowrap md:whitespace-normal"
           >
-            DI MUHAMMAD <br />
+            DI MUHAMMAD <br className="hidden md:inline" />
             <span className="text-white/40 italic font-light">ZULFA RIDHA</span>
           </motion.h1>
 
@@ -79,19 +79,20 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Scroll Indicator (Absolute Bottom) */}
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
+        style={{ opacity }}
         transition={{ duration: 1, ease: [0.32, 0.72, 0, 1], delay: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-[81px] md:bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div 
           className="flex items-center gap-3"
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         >
-          <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/40">
+          <span className="text-[8px] min-[375px]:text-[9px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.2em] font-medium text-white/40 whitespace-nowrap">
             Scroll down to explore deeper
           </span>
           <ArrowDown weight="bold" className="w-3.5 h-3.5 text-white/40" />

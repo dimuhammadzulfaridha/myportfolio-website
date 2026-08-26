@@ -5,6 +5,7 @@ const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isJumping, setIsJumping] = useState(false);
 
   useEffect(() => {
     // Only show custom cursor on desktop devices (no touch)
@@ -15,10 +16,25 @@ const CustomCursor = () => {
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
+      if (isJumping) {
+        setTimeout(() => setIsJumping(false), 50);
+      }
     };
 
     const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    
+    const handleMouseEnter = (e) => {
+      setIsJumping(true);
+      if (e.clientX !== undefined) {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      }
+      setIsVisible(true);
+    };
+
+    const handleFocus = () => {
+      setIsJumping(true);
+      setIsVisible(true);
+    };
 
     const handleHoverStart = () => setIsHovering(true);
     const handleHoverEnd = () => setIsHovering(false);
@@ -26,6 +42,7 @@ const CustomCursor = () => {
     window.addEventListener('mousemove', updateMousePosition);
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
+    window.addEventListener('focus', handleFocus);
 
     // Add event listeners to all interactive elements
     const addHoverListeners = () => {
@@ -50,6 +67,7 @@ const CustomCursor = () => {
       window.removeEventListener('mousemove', updateMousePosition);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
+      window.removeEventListener('focus', handleFocus);
       
       const interactives = document.querySelectorAll('a, button, input, textarea, select, [role="button"]');
       interactives.forEach((el) => {
@@ -67,6 +85,7 @@ const CustomCursor = () => {
     <>
       {/* Outer Ring (Delayed/Spring) */}
       <motion.div
+        initial={false}
         className="fixed top-0 left-0 w-8 h-8 rounded-full border border-white/40 pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 16,
@@ -74,16 +93,16 @@ const CustomCursor = () => {
           scale: isHovering ? 1.5 : 1,
           backgroundColor: isHovering ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
         }}
-        transition={{
-          type: 'spring',
-          stiffness: 150,
-          damping: 15,
-          mass: 0.1,
-        }}
+        transition={
+          isJumping
+            ? { duration: 0 }
+            : { type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }
+        }
       />
       
       {/* Inner Dot (Instant) */}
       <motion.div
+        initial={false}
         className="fixed top-0 left-0 w-1.5 h-1.5 bg-white rounded-full pointer-events-none z-[10000] mix-blend-difference"
         animate={{
           x: mousePosition.x - 3,
