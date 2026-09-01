@@ -13,26 +13,42 @@ const Preloader = ({ onComplete }) => {
       setDots(prev => (prev.length >= 3 ? "" : prev + "."));
     }, 400);
 
-    // Ganti teks menjadi Welcome setelah 2.5 detik
-    const textTimer = setTimeout(() => {
+    let isFinished = false;
+
+    const finishLoading = () => {
+      if (isFinished) return;
+      isFinished = true;
       clearInterval(dotsInterval);
       setText("Welcome!");
-    }, 2500);
+      
+      // Delay sedikit setelah tulisan Welcome muncul baru layarnya hilang
+      setTimeout(() => {
+        setIsLoading(false);
+        if (onComplete) {
+          onComplete();
+        }
+      }, 800);
+    };
 
-    // Selesai loading setelah 4 detik
-    const endTimer = setTimeout(() => {
-      setIsLoading(false);
-      if (onComplete) {
-        onComplete();
-      }
-    }, 4000);
+    const handleLoad = () => {
+      // Beri sedikit jeda minimal 1 detik agar animasi tetap terlihat mulus
+      // meskipun aset sudah ter-cache atau load sangat cepat
+      setTimeout(finishLoading, 1000);
+    };
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      // Fallback maksimal 5 detik jika ada request yang nyangkut (stalled)
+      setTimeout(handleLoad, 5000);
+    }
 
     return () => {
       clearInterval(dotsInterval);
-      clearTimeout(textTimer);
-      clearTimeout(endTimer);
+      window.removeEventListener('load', handleLoad);
     };
-  }, []);
+  }, [onComplete]);
 
   return (
     <AnimatePresence>

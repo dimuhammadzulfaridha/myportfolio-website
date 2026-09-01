@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
-import { LockKey, EnvelopeSimple, WarningCircle, ArrowLeft } from '@phosphor-icons/react';
+import { LockKey, EnvelopeSimple, WarningCircle, ArrowLeft, Eye, EyeSlash } from '@phosphor-icons/react';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -64,9 +65,21 @@ function Login() {
         className="w-full max-w-md relative z-10"
       >
         <div className="bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-10 shadow-2xl">
-          <div className="text-center mb-10">
-            <h1 className="text-3xl font-bold tracking-tight mb-3">Admin Portal</h1>
-            <p className="text-white/40 font-light">Silakan masuk untuk mengelola portofolio</p>
+          <div className="text-center mb-10 flex flex-col items-center">
+            <div className="mb-6 flex justify-center">
+              <svg width="56" height="56" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+                <path d="M13 15L21 15L15 25L23 25" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M21 15C25.5 15 25.5 20 21 20L25 25" stroke="url(#r-grad-login)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <defs>
+                  <linearGradient id="r-grad-login" x1="21" y1="15" x2="25.5" y2="25" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="white" stopOpacity="1"/>
+                    <stop offset="1" stopColor="white" stopOpacity="0.2"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight">Admin Portal</h1>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
@@ -75,9 +88,9 @@ function Login() {
               <motion.div 
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl flex items-center gap-3 text-sm"
+                className="bg-white/5 border border-white/10 text-white/80 p-4 rounded-xl flex items-center gap-3 text-sm backdrop-blur-md"
               >
-                <WarningCircle weight="fill" className="w-5 h-5 shrink-0" />
+                <WarningCircle weight="regular" className="w-5 h-5 shrink-0 text-white/50" />
                 <p>{error}</p>
               </motion.div>
             )}
@@ -92,7 +105,7 @@ function Login() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+                  className="w-full bg-black/40 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#050505] [&:-webkit-autofill]:[-webkit-text-fill-color:white]"
                   placeholder="admin@example.com"
                   required
                 />
@@ -106,13 +119,23 @@ function Login() {
                   <LockKey className="w-5 h-5 text-white/30" />
                 </div>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors"
+                  className="w-full bg-black/40 border border-white/10 rounded-xl py-4 pl-12 pr-12 text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 transition-colors [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#050505] [&:-webkit-autofill]:[-webkit-text-fill-color:white]"
                   placeholder="••••••••"
                   required
                 />
+                {password.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/30 hover:text-white/60 transition-colors"
+                    tabIndex="-1"
+                  >
+                    {showPassword ? <EyeSlash className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                )}
               </div>
             </div>
 

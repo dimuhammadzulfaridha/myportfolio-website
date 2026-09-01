@@ -52,7 +52,7 @@ const Hero = () => {
               <a href="https://www.linkedin.com/in/dimzulfaridha" target="_blank" rel="noopener noreferrer" className="w-[52px] h-[52px] rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-md hover:border-white/20" aria-label="LinkedIn">
                 <LinkedinLogo weight="fill" className="w-5 h-5" />
               </a>
-              <a href="https://github.com/dimzulfaridha" target="_blank" rel="noopener noreferrer" className="w-[52px] h-[52px] rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-md hover:border-white/20" aria-label="GitHub">
+              <a href="https://github.com/dimuhammadzulfaridha" target="_blank" rel="noopener noreferrer" className="w-[52px] h-[52px] rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-md hover:border-white/20" aria-label="GitHub">
                 <GithubLogo weight="fill" className="w-5 h-5" />
               </a>
               <a href="https://www.instagram.com/dimzulfar" target="_blank" rel="noopener noreferrer" className="w-[52px] h-[52px] rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300 backdrop-blur-md hover:border-white/20" aria-label="Instagram">
@@ -63,18 +63,22 @@ const Hero = () => {
         </div>
 
         {/* Photo Container */}
-        <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end w-full lg:col-span-5">
+        <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end w-full lg:col-span-5 h-[400px] md:h-[450px] lg:h-[550px] mt-8 lg:mt-0">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
-            className="w-56 h-56 md:w-80 md:h-80 lg:w-full lg:aspect-[4/5] outer-shell lg:rounded-[3rem] overflow-hidden group shadow-2xl"
+            className="w-full h-full flex justify-center lg:justify-end items-end relative"
+            style={{ 
+              maskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)'
+            }}
           >
-            <div className="inner-core w-full h-full p-2 bg-white/5 lg:rounded-[calc(3rem-0.375rem)]">
-              <div className="w-full h-full bg-white/10 rounded-[calc(2rem-0.75rem)] lg:rounded-[calc(3rem-0.75rem)] flex items-center justify-center">
-                <span className="text-white/30 text-xs tracking-widest uppercase font-medium">Foto Kosong</span>
-              </div>
-            </div>
+            <img 
+              src="/profile.png" 
+              alt="Di Muhammad Zulfa Ridha" 
+              className="max-w-full max-h-full object-contain object-bottom drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:scale-105 transition-transform duration-700 ease-in-out origin-bottom"
+            />
           </motion.div>
         </div>
       </motion.div>

@@ -116,15 +116,15 @@ const Navbar = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <ul className="hidden md:flex items-center gap-4 lg:gap-8 ml-auto pr-4">
+          {/* Navigation Links */}
+          <ul className={`items-center gap-2 sm:gap-3 md:gap-4 lg:gap-8 ml-auto md:pr-4 ${scrolled ? 'hidden md:flex' : 'flex'}`}>
             {links.map((link) => (
               <li key={`desktop-${link.id}`}>
                 <a 
                   href={`#${link.id}`}
                   onClick={(e) => scrollToSection(e, link.id)}
-                  className={`tracking-[0.15em] uppercase transition-all duration-500 whitespace-nowrap ${
-                    scrolled ? 'text-[10px]' : 'text-xs'
+                  className={`tracking-wider md:tracking-[0.15em] uppercase transition-all duration-500 whitespace-nowrap ${
+                    scrolled ? 'text-[10px]' : 'text-[8px] sm:text-[9px] md:text-xs'
                   } ${
                     activeSection === link.id
                       ? 'font-bold text-white shadow-glow-sm'
@@ -140,7 +140,7 @@ const Navbar = () => {
           {/* Mobile Hamburger Button */}
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative w-10 h-10 flex flex-col justify-center items-center gap-1.5 z-[60] outline-none focus:outline-none border-none bg-transparent"
+            className={`md:hidden relative w-10 h-10 flex-col justify-center items-center gap-1.5 z-[60] outline-none focus:outline-none border-none bg-transparent ${scrolled ? 'flex' : 'hidden'}`}
           >
             <span className={`block w-6 h-[1.5px] bg-white transition-transform duration-500 ease-fluid origin-center ${isOpen ? 'rotate-45 translate-y-[3px]' : ''}`} />
             <span className={`block w-6 h-[1.5px] bg-white transition-transform duration-500 ease-fluid origin-center ${isOpen ? '-rotate-45 -translate-y-[4.5px]' : ''}`} />

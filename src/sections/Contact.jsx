@@ -98,7 +98,7 @@ const Contact = () => {
             <a href="https://www.linkedin.com/in/dimzulfaridha" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300" aria-label="LinkedIn">
               <LinkedinLogo weight="fill" className="w-5 h-5" />
             </a>
-            <a href="https://github.com/dimzulfaridha" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300" aria-label="GitHub">
+            <a href="https://github.com/dimuhammadzulfaridha" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300" aria-label="GitHub">
               <GithubLogo weight="fill" className="w-5 h-5" />
             </a>
             <a href="https://www.instagram.com/dimzulfar" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 text-white/70 hover:text-white transition-all duration-300" aria-label="Instagram">

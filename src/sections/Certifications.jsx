@@ -67,7 +67,7 @@ const Certifications = () => {
       </motion.div>
 
       {/* Grid Layout 4 Columns to make cards smaller again */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         {certifications.map((cert, i) => (
           <motion.div 
             key={cert.id}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Terminal, Code, Palette, Cpu, GithubLogo, LinkedinLogo, InstagramLogo, SpotifyLogo, ArrowUpRight } from '@phosphor-icons/react';
 import { GitHubCalendar } from 'react-github-calendar';
@@ -6,6 +6,27 @@ import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 
 const About = () => {
+  const [calConfig, setCalConfig] = useState({ blockSize: 14, blockMargin: 4 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 400) {
+        setCalConfig({ blockSize: 8, blockMargin: 2 });
+      } else if (width < 640) {
+        setCalConfig({ blockSize: 10, blockMargin: 3 });
+      } else if (width < 1024) {
+        setCalConfig({ blockSize: 12, blockMargin: 3 });
+      } else if (width < 1280) {
+        setCalConfig({ blockSize: 11, blockMargin: 3 });
+      } else {
+        setCalConfig({ blockSize: 13, blockMargin: 4 });
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const languages = [
     { name: "JavaScript", slug: "javascript" },
     { name: "TypeScript", slug: "typescript" },
@@ -82,11 +103,11 @@ const About = () => {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 overflow-hidden flex items-center justify-center">
-                  <img src="https://github.com/dimzulfaridha.png" alt="GitHub Avatar" className="w-full h-full object-cover" />
+                  <img src="https://github.com/dimuhammadzulfaridha.png" alt="GitHub Avatar" className="w-full h-full object-cover" />
                 </div>
-                <span className="text-base md:text-lg font-medium text-white/90">@dimzulfaridha</span>
+                <span className="text-base md:text-lg font-medium text-white/90">@dimuhammadzulfaridha</span>
               </div>
-              <a href="https://github.com/dimzulfaridha" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs md:text-sm text-white/60 hover:text-white transition-colors">
+              <a href="https://github.com/dimuhammadzulfaridha" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs md:text-sm text-white/60 hover:text-white transition-colors">
                 <span className="hidden sm:inline">View Profile</span> <GithubLogo weight="fill" className="w-5 h-5" />
               </a>
             </div>
@@ -96,9 +117,9 @@ const About = () => {
                 <span className="ml-auto">Real-time GitHub Contributions ({new Date().getFullYear()})</span>
               </div>
 
-              <div className="flex justify-center w-full overflow-x-auto pb-4 pt-2 custom-scrollbar">
+              <div className="flex justify-center w-full overflow-hidden pb-4 pt-2 hide-calendar-scroll">
                 <GitHubCalendar
-                  username="dimzulfaridha"
+                  username="dimuhammadzulfaridha"
                   year={new Date().getFullYear()}
                   colorScheme="dark"
                   theme={{
@@ -107,16 +128,20 @@ const About = () => {
                   }}
                   hideTotalCount={true}
                   hideColorLegend={false}
-                  blockSize={16}
-                  blockMargin={6}
+                  blockSize={calConfig.blockSize}
+                  blockMargin={calConfig.blockMargin}
                   fontSize={12}
                   transformData={(data) => {
-                    const firstActiveIndex = data.findIndex(day => day.count > 0);
-                    if (firstActiveIndex === -1) return data;
-                    // Start from the Sunday of the week where the first contribution happened
-                    // so the column aligns properly
-                    const daysToSunday = new Date(data[firstActiveIndex].date).getDay();
-                    return data.slice(Math.max(0, firstActiveIndex - daysToSunday));
+                    const currentYear = new Date().getFullYear();
+                    // Mulai dari 1 Juli tahun ini (bulan ke-6 secara index)
+                    const julyFirst = new Date(currentYear, 6, 1);
+                    const julyIndex = data.findIndex(day => new Date(day.date) >= julyFirst);
+                    
+                    if (julyIndex === -1) return data;
+                    
+                    // Sesuaikan agar mulai pada hari Minggu supaya kotak sebaris rapi
+                    const daysToSunday = new Date(data[julyIndex].date).getDay();
+                    return data.slice(Math.max(0, julyIndex - daysToSunday));
                   }}
                   renderBlock={(block, activity) =>
                     React.cloneElement(block, {
@@ -195,7 +220,7 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-        className="mt-12 flex flex-col items-center"
+        className="mt-12 lg:mt-24 flex flex-col items-center"
       >
         <div className="inline-block rounded-full px-3 py-1 mb-6 md:mb-10 text-[10px] uppercase tracking-[0.2em] font-medium border border-white/10 bg-white/5 text-white/50">
           Tech Stack

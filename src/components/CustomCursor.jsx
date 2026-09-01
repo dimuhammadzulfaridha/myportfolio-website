@@ -13,6 +13,8 @@ const CustomCursor = () => {
       return;
     }
 
+    document.body.classList.add('hide-cursor');
+
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
@@ -75,6 +77,7 @@ const CustomCursor = () => {
         el.removeEventListener('mouseleave', handleHoverEnd);
       });
       observer.disconnect();
+      document.body.classList.remove('hide-cursor');
     };
   }, [isVisible]);
 

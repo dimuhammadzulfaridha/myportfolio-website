@@ -70,7 +70,7 @@ function Admin() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/');
+    navigate('/login');
   };
 
   const handleOpenModal = () => {
@@ -280,7 +280,7 @@ function Admin() {
           </button>
         </div>
 
-        <nav className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible space-x-2 md:space-x-0 md:space-y-2 pb-2 md:pb-0 scrollbar-hide">
+        <nav className="flex flex-row md:flex-col justify-center md:justify-start overflow-x-auto md:overflow-visible space-x-2 md:space-x-0 md:space-y-2 pb-2 md:pb-0 scrollbar-hide">
           {['experiences', 'projects', 'certifications'].map((tab) => (
             <button
               key={tab}
@@ -303,43 +303,62 @@ function Admin() {
 
       {/* Main Content */}
       <div className="flex-1 p-4 md:p-10 z-10 overflow-y-auto">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4 sm:gap-0">
-          <h1 className="text-2xl md:text-3xl font-bold capitalize">Kelola {activeTab}</h1>
+        <div className="flex flex-row justify-between items-center mb-6 md:mb-8 gap-4">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold capitalize">Kelola {activeTab}</h1>
           <button 
             onClick={handleOpenModal}
-            className="flex items-center justify-center gap-2 bg-white text-black px-5 py-2.5 rounded-full font-medium hover:bg-white/90 transition-colors text-sm w-full sm:w-auto"
+            className="flex items-center justify-center gap-2 bg-white text-black px-4 py-2 rounded-full font-medium hover:bg-white/90 transition-colors text-xs md:text-sm"
           >
             <Plus weight="bold" /> Tambah Baru
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5">
           {items.length === 0 ? (
             <p className="text-white/40 col-span-full">Belum ada data. Silakan tambah baru.</p>
           ) : (
             items.map((item) => (
-              <div key={item.id} className="bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col relative overflow-hidden group">
+              <div key={item.id} className="bg-white/5 border border-white/10 rounded-2xl p-3 sm:p-4 flex flex-col relative overflow-hidden group aspect-square">
                 {item.image && (
-                  <img src={item.image} alt={item.title} className="w-full h-32 object-cover rounded-xl mb-4" />
+                  <div className="w-full h-[40%] mb-2 shrink-0">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover rounded-xl" />
+                  </div>
                 )}
-                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-sm text-white/60 mb-4 line-clamp-2">{item.description || item.company || item.issuer}</p>
-                <div className="mt-auto flex justify-end gap-2">
-                  <button onClick={() => { 
-                    setFormData({
-                      ...item,
-                      startDate: item.startDate ? parseOldDate(item.startDate) : '',
-                      endDate: item.endDate ? parseOldDate(item.endDate) : ''
-                    }); 
-                    setIsPresent(item.endDate === 'Present');
-                    setSelectedFile(null);
-                    setIsModalOpen(true); 
-                  }} className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors">
-                    <PencilSimple className="w-4 h-4" />
-                  </button>
-                  <button onClick={() => handleDelete(item.id)} className="p-2 bg-red-500/20 text-red-400 hover:bg-red-500/40 rounded-lg transition-colors">
-                    <Trash className="w-4 h-4" />
-                  </button>
+                <h3 className="text-xs sm:text-sm font-bold mb-1 line-clamp-2 leading-tight">{item.title}</h3>
+                <p className="text-[10px] sm:text-xs text-white/60 mb-2 line-clamp-2 leading-tight">{item.description || item.company || item.issuer}</p>
+                
+                <div className="mt-auto pt-2 flex items-center justify-between gap-2 border-t border-white/10">
+                  <div className="flex gap-1 overflow-hidden items-center">
+                    {(activeTab === 'projects' || activeTab === 'certifications') && item.tags && (() => {
+                        let parsedTags = [];
+                        try {
+                          parsedTags = typeof item.tags === 'string' && item.tags.startsWith('[') ? JSON.parse(item.tags) : typeof item.tags === 'string' ? item.tags.split(',') : item.tags;
+                          if (!Array.isArray(parsedTags)) parsedTags = [];
+                        } catch (e) {
+                          parsedTags = [];
+                        }
+                        return parsedTags.slice(0, 2).map((tag, i) => (
+                          <span key={i} className="text-[7px] sm:text-[8px] px-2 py-0.5 uppercase tracking-wider font-semibold border border-white/10 rounded-full text-white/60 bg-white/5 whitespace-nowrap">{typeof tag === 'string' ? tag.trim() : tag}</span>
+                        ));
+                    })()}
+                  </div>
+                  <div className="flex justify-end gap-1.5 shrink-0">
+                    <button onClick={() => { 
+                      setFormData({
+                        ...item,
+                        startDate: item.startDate ? parseOldDate(item.startDate) : '',
+                        endDate: item.endDate ? parseOldDate(item.endDate) : ''
+                      }); 
+                      setIsPresent(item.endDate === 'Present');
+                      setSelectedFile(null);
+                      setIsModalOpen(true); 
+                    }} className="p-1.5 bg-white/10 hover:bg-white/20 rounded-lg transition-colors">
+                      <PencilSimple className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    </button>
+                    <button onClick={() => handleDelete(item.id)} className="p-1.5 bg-red-500/20 text-red-400 hover:bg-red-500/40 rounded-lg transition-colors">
+                      <Trash className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))
